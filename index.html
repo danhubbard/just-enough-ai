@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>just enough ai | AI that actually fits your business</title>
+  <meta name="description" content="We help small businesses find the 1% of AI that will actually make a difference. No hype, no overwhelm—just results.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FDFBF7',
+            sage: {
+              DEFAULT: '#4A6B5D',
+              light: '#E8EFEB',
+              bright: '#8FBAA8',
+              dark: '#3d5a4d',
+            },
+            muted: '#5c5c5c',
+            border: '#e8e4de',
+          },
+          fontFamily: {
+            heading: ['DM Serif Display', 'serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="font-body bg-cream text-gray-900 leading-relaxed text-[17px]">
+
+  <!-- Navigation -->
+  <nav id="nav" class="fixed top-0 left-0 right-0 bg-cream z-50 border-b border-transparent transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+      <a href="#" class="font-heading text-2xl font-semibold text-gray-900">
+        just enough <span class="text-sage">ai</span>
+      </a>
+      <ul class="hidden md:flex items-center gap-8">
+        <li><a href="#how" class="text-muted text-sm font-medium hover:text-sage transition-colors">How it Works</a></li>
+        <li><a href="#services" class="text-muted text-sm font-medium hover:text-sage transition-colors">Services</a></li>
+        <li><a href="#case-study" class="text-muted text-sm font-medium hover:text-sage transition-colors">Case Study</a></li>
+        <li><a href="#about" class="text-muted text-sm font-medium hover:text-sage transition-colors">About</a></li>
+        <li><a href="#contact" class="inline-flex items-center gap-2 px-7 py-3.5 bg-sage text-white text-sm font-medium rounded-lg hover:bg-sage-dark transition-all hover:-translate-y-0.5">Let's Talk</a></li>
+      </ul>
+      <button class="md:hidden p-2" aria-label="Menu">
+        <span class="block w-6 h-0.5 bg-gray-900 mb-1.5"></span>
+        <span class="block w-6 h-0.5 bg-gray-900 mb-1.5"></span>
+        <span class="block w-6 h-0.5 bg-gray-900"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="min-h-screen flex items-center pt-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="max-w-3xl">
+        <span class="inline-block text-sm font-medium text-sage bg-sage-light px-4 py-2 rounded-full mb-6">
+          AI for small businesses
+        </span>
+        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6">
+          You don't need <em class="italic text-sage">all</em> the AI.<br>Just the 1% that matters.
+        </h1>
+        <p class="text-xl text-muted max-w-xl mb-10">
+          AI is everywhere, changing everything, all the time. We help local businesses cut through the noise and find the opportunities that will actually move the needle.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#contact" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-sage text-white font-medium rounded-lg hover:bg-sage-dark transition-all hover:-translate-y-0.5">
+            Book a free discovery call
+          </a>
+          <a href="#how" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-transparent text-gray-900 font-medium rounded-lg border-2 border-border hover:bg-sage-light hover:border-sage hover:text-sage transition-all">
+            See how it works
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="py-28 bg-gradient-to-b from-cream to-[#f5f2ec]">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="text-xs font-semibold uppercase tracking-widest text-sage mb-4">The Problem</p>
+      <h2 class="font-heading text-3xl md:text-4xl font-semibold leading-snug mb-6 max-w-2xl">
+        AI feels like a full-time job you didn't sign up for
+      </h2>
+      <p class="text-lg text-muted max-w-xl">
+        You know you should be "doing something with AI" but between running your business and the constant flood of new tools, where do you even start?
+      </p>
+      
+      <div class="grid md:grid-cols-3 gap-6 mt-16">
+        <div class="bg-white p-8 rounded-2xl border border-border">
+          <div class="w-12 h-12 bg-sage-light rounded-xl flex items-center justify-center mb-5 text-2xl">🌊</div>
+          <h3 class="font-heading text-xl font-semibold mb-3">Overwhelming options</h3>
+          <p class="text-muted text-sm">New AI tools launch daily. ChatGPT, Claude, Gemini, a thousand apps—each promising to transform your business. Which actually matter?</p>
+        </div>
+        <div class="bg-white p-8 rounded-2xl border border-border">
+          <div class="w-12 h-12 bg-sage-light rounded-xl flex items-center justify-center mb-5 text-2xl">🎯</div>
+          <h3 class="font-heading text-xl font-semibold mb-3">Generic advice</h3>
+          <p class="text-muted text-sm">"Use AI for marketing!" Great, but how? The advice online is either too basic or built for tech companies, not real businesses like yours.</p>
+        </div>
+        <div class="bg-white p-8 rounded-2xl border border-border">
+          <div class="w-12 h-12 bg-sage-light rounded-xl flex items-center justify-center mb-5 text-2xl">⏰</div>
+          <h3 class="font-heading text-xl font-semibold mb-3">No time to experiment</h3>
+          <p class="text-muted text-sm">You've got a business to run. You can't spend weeks testing tools that might not even be relevant by next month.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution Section -->
+  <section id="how" class="py-28 bg-gray-900 text-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="text-xs font-semibold uppercase tracking-widest text-sage-bright mb-4">How We Help</p>
+      <h2 class="font-heading text-3xl md:text-4xl font-semibold leading-snug mb-6 max-w-2xl">
+        We find your opportunities, then make them real
+      </h2>
+      <p class="text-lg text-white/70 max-w-xl">
+        A focused approach: understand your business, identify the wins, and implement what actually works.
+      </p>
+      
+      <div class="grid md:grid-cols-3 gap-12 mt-16">
+        <div>
+          <div class="font-heading text-7xl font-semibold text-sage-bright leading-none mb-4">01</div>
+          <h3 class="font-heading text-2xl font-semibold mb-3">Discovery</h3>
+          <p class="text-white/70 text-sm">We dig into how your business actually works—your processes, pain points, and goals. No jargon, just conversation.</p>
+        </div>
+        <div>
+          <div class="font-heading text-7xl font-semibold text-sage-bright leading-none mb-4">02</div>
+          <h3 class="font-heading text-2xl font-semibold mb-3">Opportunity Map</h3>
+          <p class="text-white/70 text-sm">We identify the specific places AI can help, ranked by impact and ease. You'll see exactly where the wins are.</p>
+        </div>
+        <div>
+          <div class="font-heading text-7xl font-semibold text-sage-bright leading-none mb-4">03</div>
+          <h3 class="font-heading text-2xl font-semibold mb-3">Implementation</h3>
+          <p class="text-white/70 text-sm">We build, integrate, and train your team. You get working solutions, not a strategy deck that collects dust.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="text-xs font-semibold uppercase tracking-widest text-sage mb-4">What We Do</p>
+      <h2 class="font-heading text-3xl md:text-4xl font-semibold leading-snug mb-6 max-w-2xl">
+        From quick wins to custom solutions
+      </h2>
+      <p class="text-lg text-muted max-w-xl">
+        Whether you need a one-time automation or ongoing partnership, we scale to fit.
+      </p>
+      
+      <div class="grid md:grid-cols-3 gap-6 mt-16">
+        <div class="p-10 border-2 border-border rounded-2xl transition-all hover:border-sage hover:bg-white group">
+          <h3 class="font-heading text-xl font-semibold mb-3">AI Opportunity Audit</h3>
+          <p class="text-muted text-sm mb-5">A focused deep-dive into your business to uncover the AI opportunities worth pursuing.</p>
+          <ul class="space-y-0">
+            <li class="text-sm text-muted py-2 border-t border-border flex items-center gap-2">
+              <span class="text-sage">→</span> Process analysis
+            </li>
+            <li class="text-sm text-muted py-2 border-t border-border flex items-center gap-2">
+              <span class="text-sage">→</span> Prioritised recommendations
+            </li>
+            <li class="text-sm text-muted py-2 border-t border-border flex items-center gap-2">
+              <span class="text-sage">→</span> Clear next steps
+            </li>
+          </ul>
+        </div>
+        <div class="p-10 border-2 border-border rounded-2xl transition-all hover:border-sage hover:bg-white group">
+          <h3 class="font-heading text-xl font-semibold mb-3">Automation Build</h3>
+          <p class="text-muted text-sm mb-5">We build and implement specific automations that save time and reduce friction.</p>
+          <ul class="space-y-0">
+            <li class="text-sm text-muted py-2 border-t border-border flex items-center gap-2">
+              <span class="text-sage">→</span> Workflow automation
+            </li>
+            <li class="text-sm text-muted py-2 border-t border-border flex items-center gap-2">
+              <span class="text-sage">→</span> AI integrations
+            </li>
+            <li class="text-sm text-muted py-2 border-t border-border flex items-center gap-2">
+              <span class="text-sage">→</span> Team training
+            </li>
+          </ul>
+        </div>
+        <div class="p-10 border-2 border-border rounded-2xl transition-all hover:border-sage hover:bg-white group">
+          <h3 class="font-heading text-xl font-semibold mb-3">Custom AI Products</h3>
+          <p class="text-muted text-sm mb-5">Need something unique? We design and build AI-powered tools tailored to your business.</p>
+          <ul class="space-y-0">
+            <li class="text-sm text-muted py-2 border-t border-border flex items-center gap-2">
+              <span class="text-sage">→</span> Custom chatbots & assistants
+            </li>
+            <li class="text-sm text-muted py-2 border-t border-border flex items-center gap-2">
+              <span class="text-sage">→</span> Data analysis tools
+            </li>
+            <li class="text-sm text-muted py-2 border-t border-border flex items-center gap-2">
+              <span class="text-sage">→</span> Internal apps
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study Section -->
+  <section id="case-study" class="py-28 bg-gradient-to-b from-cream to-[#f5f2ec]">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="text-xs font-semibold uppercase tracking-widest text-sage mb-4">Case Study</p>
+      <h2 class="font-heading text-3xl md:text-4xl font-semibold leading-snug mb-16 max-w-2xl">
+        Real results for real businesses
+      </h2>
+      
+      <div class="bg-white rounded-3xl border border-border overflow-hidden">
+        <div class="grid lg:grid-cols-5 gap-0">
+          <!-- Left: Client info -->
+          <div class="lg:col-span-2 p-10 lg:p-12 bg-gray-900 text-white flex flex-col">
+            <div class="mb-8">
+              <img src="images/sng_logo_primary.svg" alt="Sovereign Homes" class="h-12 object-contain brightness-0 invert opacity-90">
+            </div>
+            <p class="text-white/70 text-sm mb-8 flex-grow">
+              Sovereign Homes is a regional property developer building quality new-build homes across the South East.
+            </p>
+            <div class="space-y-4 pt-8 border-t border-white/10">
+              <div>
+                <p class="text-xs text-white/50 uppercase tracking-wider mb-1">Industry</p>
+                <p class="text-sm">Property Development</p>
+              </div>
+              <div>
+                <p class="text-xs text-white/50 uppercase tracking-wider mb-1">Solutions</p>
+                <p class="text-sm">Content Automation, Image Generation</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right: The work -->
+          <div class="lg:col-span-3 p-10 lg:p-12">
+            <h3 class="font-heading text-2xl font-semibold mb-6">
+              Automating marketing content for new developments
+            </h3>
+            
+            <div class="space-y-8">
+              <!-- Solution 1 -->
+              <div class="flex gap-4">
+                <div class="w-10 h-10 bg-sage-light rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span class="text-sage font-heading font-semibold">1</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-2">Automated brochure copy generation</h4>
+                  <p class="text-muted text-sm">
+                    We built a system that takes new site coordinates and automatically researches local schools, shops, transport links, and amenities—then generates tailored marketing copy for brochures and listings. What used to take hours of manual research now happens in minutes.
+                  </p>
+                </div>
+              </div>
+              
+              <!-- Solution 2 -->
+              <div class="flex gap-4">
+                <div class="w-10 h-10 bg-sage-light rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span class="text-sage font-heading font-semibold">2</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-2">AI-powered show home personalisation</h4>
+                  <p class="text-muted text-sm">
+                    Using AI image generation, we enabled Sovereign to "redecorate" show home photos for different buyer personas. The same room can now be styled for young professionals, growing families, or retirees—helping buyers see themselves in the space.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Results -->
+            <div class="mt-10 pt-8 border-t border-border">
+              <p class="text-xs font-semibold uppercase tracking-widest text-sage mb-4">The Impact</p>
+              <div class="grid grid-cols-2 gap-6">
+                <div>
+                  <p class="font-heading text-3xl font-semibold text-sage">80%</p>
+                  <p class="text-sm text-muted">reduction in brochure prep time</p>
+                </div>
+                <div>
+                  <p class="font-heading text-3xl font-semibold text-sage">3x</p>
+                  <p class="text-sm text-muted">more targeted marketing variations</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-28 bg-sage-light">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-20 items-center">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-widest text-sage mb-4">About Us</p>
+          <h2 class="font-heading text-3xl md:text-4xl font-semibold leading-snug mb-6">
+            Small and local, just like you
+          </h2>
+          <p class="text-muted mb-4">
+            We're two tech builders who've spent years creating products and solving problems with technology. We've seen what works—and what's just hype.
+          </p>
+          <p class="text-muted mb-4">
+            We started Just Enough AI because we believe small businesses deserve access to AI that actually fits, without the enterprise price tag or consultant-speak.
+          </p>
+          <p class="font-medium">
+            We get business. And we're here to help yours thrive.
+          </p>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-border">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-sage/10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg">🎯</div>
+              <div>
+                <h4 class="font-semibold mb-1">Focus over features</h4>
+                <p class="text-sm text-muted">We find the 1% that matters, not the 99% that distracts.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-border">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-sage/10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg">🔧</div>
+              <div>
+                <h4 class="font-semibold mb-1">Builders, not consultants</h4>
+                <p class="text-sm text-muted">We don't just advise—we design, build, and ship.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-border">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-sage/10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg">💬</div>
+              <div>
+                <h4 class="font-semibold mb-1">Plain English</h4>
+                <p class="text-sm text-muted">No jargon, no buzzwords. Just clear conversation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="contact" class="py-36 text-center">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="text-xs font-semibold uppercase tracking-widest text-sage mb-4">Get Started</p>
+      <h2 class="font-heading text-3xl md:text-4xl font-semibold leading-snug mb-6 max-w-2xl mx-auto">
+        Let's find your 1%
+      </h2>
+      <p class="text-lg text-muted max-w-xl mx-auto mb-10">
+        Book a free 30-minute discovery call. We'll chat about your business and see if there's a fit. No pitch, no pressure.
+      </p>
+      <a href="mailto:hello@justenough.ai" class="inline-flex items-center gap-2 px-7 py-3.5 bg-sage text-white font-medium rounded-lg hover:bg-sage-dark transition-all hover:-translate-y-0.5">
+        Book a Discovery Call
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 border-t border-border">
+    <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-between items-center gap-4">
+      <a href="#" class="font-heading text-xl font-semibold text-gray-900">
+        just enough <span class="text-sage">ai</span>
+      </a>
+      <p class="text-sm text-muted">© 2026 Just Enough AI. Made with care in [Your City].</p>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('border-border', window.scrollY > 50);
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
