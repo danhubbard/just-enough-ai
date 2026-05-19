@@ -1,0 +1,42 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>just enough ai | {{ page.title | default: "AI that actually fits your business" }}</title>
+<meta name="description" content="{{ page.description | default: site.description | escape }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#f2f2f2',
+          blue: {
+            DEFAULT: '#6993A4',
+            light: '#6E9DAF',
+            dark: '#526870',
+          },
+          yellow: '#FFBE4A',
+          muted: '#5c5c5c',
+          border: '#e8e4de',
+          sage: {
+            DEFAULT: '#6993A4',
+            light: '#e8eef0',
+          },
+          'sage-bright': '#6E9DAF',
+        },
+        fontFamily: {
+          heading: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      },
+    },
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+</style>
+<link rel="icon" href="https://emojifavicon.com/🤖" />

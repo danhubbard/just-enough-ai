@@ -1,0 +1,27 @@
+title: just enough ai
+email: hello@justenoughai.co.uk
+url: "https://justenoughai.co.uk"
+baseurl: ""
+
+collections:
+  for:
+    output: true
+    permalink: /for/:name/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      type: for
+    values:
+      layout: vertical
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - index-alt.html
+  - landing.html
+  - README.md
+  - .gitignore

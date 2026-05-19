@@ -1,0 +1,131 @@
+---
+layout: default
+nav_style: vertical
+---
+{% assign hero_image = page.hero_image | default: "images/robot-2.svg" %}
+{% assign glow = page.hero_glow | default: "yellow" %}
+{% if glow == "blue" %}
+  {% assign glow_class = "bg-blue-light/60" %}
+{% elsif glow == "red" %}
+  {% assign glow_class = "bg-red-200/60" %}
+{% else %}
+  {% assign glow_class = "bg-yellow/80" %}
+{% endif %}
+
+<!-- Hero -->
+<section class="bg-cream/60 min-h-[85vh] flex items-center pt-20 sm:pt-24 pb-12 sm:pb-16 lg:pb-20">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 w-full">
+    <div class="grid lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] gap-8 sm:gap-10 lg:gap-14 xl:gap-16 items-center">
+      <div class="order-2 lg:order-1 max-w-3xl lg:max-w-none text-center sm:text-left mx-auto sm:mx-0">
+        <h1 class="font-heading mb-6 sm:mb-8">
+          <span class="block text-gray-900 text-[2rem] leading-[1.1] sm:text-4xl sm:leading-tight md:text-5xl lg:text-6xl font-bold tracking-[-0.02em]">
+            Just enough AI for {{ page.audience }}.
+          </span>
+        </h1>
+        {% if page.tagline %}
+        <p class="text-lg sm:text-xl text-muted max-w-xl mb-8 sm:mb-10 mx-auto sm:mx-0">
+          {{ page.tagline }}
+        </p>
+        {% endif %}
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start">
+          <a href="#contact" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-blue-light text-white font-medium rounded-lg hover:bg-blue-dark transition-all hover:-translate-y-0.5">
+            Talk to us
+          </a>
+        </div>
+      </div>
+      <div class="order-1 lg:order-2 flex justify-center lg:justify-end shrink-0">
+        <div class="relative w-[min(42%,8.25rem)] sm:w-[min(48%,9.5rem)] lg:w-[min(100%,clamp(12rem,24vw,24rem))] mb-5 sm:mb-6 lg:mb-0">
+          <div class="absolute inset-0 {{ glow_class }} rounded-[40%] blur-3xl scale-80 translate-y-2" aria-hidden="true"></div>
+          <img
+            src="{{ hero_image | relative_url }}"
+            alt="{% if page.hero_alt %}{{ page.hero_alt | escape }}{% else %}Just Enough AI for {{ page.audience | escape }}{% endif %}"
+            class="relative w-full h-auto max-h-[min(24rem,50vh)] object-contain drop-shadow-md"
+            loading="eager"
+            decoding="async"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sound familiar? -->
+{% if page.pain_points and page.pain_points.size > 0 %}
+<section class="py-20 sm:py-24 md:py-28 bg-gradient-to-b from-cream to-[#f5f2ec]">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <p class="text-xs font-semibold uppercase tracking-widest text-yellow mb-3 sm:mb-4">Sound familiar?</p>
+    {% if page.pain_intro %}
+    <h2 class="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold leading-snug mb-4 sm:mb-6 max-w-2xl">
+      {{ page.pain_intro }}
+    </h2>
+    {% endif %}
+    <div class="grid md:grid-cols-3 gap-6 sm:gap-7 mt-10 sm:mt-12 md:mt-16">
+      {% for point in page.pain_points %}
+      <div class="bg-white p-7 sm:p-8 rounded-2xl border border-border">
+        {% if point.emoji %}
+        <div class="w-12 h-12 bg-sage-light rounded-xl flex items-center justify-center mb-5 text-2xl" aria-hidden="true">{{ point.emoji }}</div>
+        {% endif %}
+        <h3 class="font-heading text-lg sm:text-xl font-semibold mb-3">{{ point.title }}</h3>
+        <p class="text-muted text-sm leading-relaxed">{{ point.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Where AI actually helps -->
+{% if page.helps and page.helps.size > 0 %}
+<section class="py-20 sm:py-24 md:py-28 bg-blue-dark">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <p class="text-xs font-semibold uppercase tracking-widest text-yellow mb-3 sm:mb-4">Where AI actually helps</p>
+    {% if page.helps_intro %}
+    <p class="text-base sm:text-lg text-white/70 max-w-xl mb-0">{{ page.helps_intro }}</p>
+    {% endif %}
+    <div class="grid md:grid-cols-3 gap-7 sm:gap-8 md:gap-6 mt-12 sm:mt-14 md:mt-16">
+      {% for item in page.helps %}
+      <div class="h-full p-7 sm:p-8 md:p-10 border-4 border-border border-yellow rounded-2xl bg-white">
+        <h3 class="font-heading text-lg sm:text-xl text-blue-dark font-semibold mb-2 sm:mb-3">{{ item.title }}</h3>
+        <p class="text-blue-dark/70 text-sm leading-relaxed">{{ item.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Tools we've already built (optional) -->
+{% if page.tools and page.tools.size > 0 %}
+<section class="py-20 sm:py-24 md:py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <p class="text-xs font-semibold uppercase tracking-widest text-yellow mb-3 sm:mb-4">Tools we've already built</p>
+    {% if page.tools_intro %}
+    <p class="text-muted max-w-xl mb-0">{{ page.tools_intro }}</p>
+    {% endif %}
+    <div class="grid md:grid-cols-3 gap-7 sm:gap-8 mt-12 sm:mt-14">
+      {% for tool in page.tools %}
+      <div class="p-7 sm:p-8 rounded-2xl border border-border bg-cream/40">
+        <h3 class="font-heading text-lg font-semibold text-blue-dark mb-2">{{ tool.title }}</h3>
+        <p class="text-muted text-sm leading-relaxed">{{ tool.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Want to see if this fits? -->
+<section id="contact" class="py-24 sm:py-28 md:py-36 bg-white text-center">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <p class="text-xs font-semibold uppercase tracking-widest text-yellow mb-3 sm:mb-4">Want to see if this fits?</p>
+    <h2 class="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold leading-snug mb-4 sm:mb-6 max-w-2xl mx-auto px-1">
+      {{ page.closer_heading | default: "Let's find where AI can help you" }}
+    </h2>
+    <p class="text-base sm:text-lg text-muted max-w-xl mx-auto mb-8 sm:mb-10 px-1 leading-relaxed">
+      {{ page.closer_body | default: "Tell us what you're struggling with. We'll chat about your business, offer advice where we can, and see if there's a fit. No pitch, no pressure." }}
+    </p>
+    <a href="mailto:{{ site.email }}" class="inline-flex items-center justify-center gap-2 w-full max-w-md mx-auto px-8 py-4 sm:px-10 sm:py-3.5 bg-blue-light text-white text-lg sm:text-xl font-medium rounded-lg border-2 border-yellow shadow-sm hover:bg-blue-dark hover:text-yellow hover:shadow-md hover:shadow-blue-dark/15 transition-all hover:-translate-y-0.5 break-all sm:break-normal focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow focus-visible:ring-offset-2">
+      {{ site.email }}
+    </a>
+  </div>
+</section>

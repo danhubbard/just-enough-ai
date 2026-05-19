@@ -1,0 +1,35 @@
+{% assign style = include.nav_style | default: page.nav_style | default: layout.nav_style | default: "home" %}
+{% assign home_url = "/" | relative_url %}
+
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 bg-white border-t-8 border-yellow transition-colors duration-300">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 py-4 sm:py-6 flex justify-between items-center">
+    <a href="{{ home_url }}" class="font-heading text-2xl font-semibold text-gray-900 tracking-[-0.03em]">
+      just enough <span class="text-yellow">ai</span>
+    </a>
+    {% if style == "home" %}
+    <ul class="hidden md:flex items-center gap-8">
+      <li><a href="#services" class="text-muted text-sm font-medium hover:text-blue transition-colors">What we do</a></li>
+      <li><a href="#about" class="text-muted text-sm font-medium hover:text-blue transition-colors">About us</a></li>
+      <li><a href="#contact" class="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-dark text-white text-sm font-medium rounded-lg hover:bg-blue-light transition-all hover:-translate-y-0.5">Let's Talk</a></li>
+    </ul>
+    {% else %}
+    <ul class="hidden md:flex items-center gap-8">
+      <li><a href="#contact" class="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-dark text-white text-sm font-medium rounded-lg hover:bg-blue-light transition-all hover:-translate-y-0.5">Let's Talk</a></li>
+    </ul>
+    {% endif %}
+    <button type="button" id="nav-toggle" class="md:hidden relative z-10 p-2 -mr-2 rounded-lg hover:bg-cream/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-dark/40" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+      <span class="block w-6 h-0.5 bg-gray-900 mb-1.5 transition-transform origin-center" id="nav-toggle-bar-1"></span>
+      <span class="block w-6 h-0.5 bg-gray-900 mb-1.5 transition-opacity" id="nav-toggle-bar-2"></span>
+      <span class="block w-6 h-0.5 bg-gray-900 transition-transform origin-center" id="nav-toggle-bar-3"></span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="md:hidden hidden border-t border-border bg-white shadow-lg" aria-hidden="true">
+    <ul class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1">
+      {% if style == "home" %}
+      <li><a href="#services" class="block py-3 text-base font-medium text-gray-900 border-b border-border/80">What we do</a></li>
+      <li><a href="#about" class="block py-3 text-base font-medium text-gray-900 border-b border-border/80">About</a></li>
+      {% endif %}
+      <li><a href="#contact" class="block py-3 text-base font-medium text-gray-900{% if style == 'home' %} border-b border-border/80{% endif %}">Let's Talk</a></li>
+    </ul>
+  </div>
+</nav>

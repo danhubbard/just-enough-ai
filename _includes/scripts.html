@@ -1,0 +1,58 @@
+<script>
+  const nav = document.getElementById('nav');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navToggle = document.getElementById('nav-toggle');
+  const bar1 = document.getElementById('nav-toggle-bar-1');
+  const bar2 = document.getElementById('nav-toggle-bar-2');
+  const bar3 = document.getElementById('nav-toggle-bar-3');
+
+  function setMobileMenuOpen(open) {
+    if (!mobileMenu || !navToggle) return;
+    mobileMenu.classList.toggle('hidden', !open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.classList.toggle('overflow-hidden', open);
+    if (bar1 && bar2 && bar3) {
+      bar1.classList.toggle('translate-y-2', open);
+      bar1.classList.toggle('rotate-45', open);
+      bar2.classList.toggle('opacity-0', open);
+      bar3.classList.toggle('-translate-y-2', open);
+      bar3.classList.toggle('-rotate-45', open);
+    }
+  }
+
+  navToggle?.addEventListener('click', () => {
+    const open = mobileMenu?.classList.contains('hidden');
+    setMobileMenuOpen(!!open);
+  });
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('border-border', window.scrollY > 50);
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      setMobileMenuOpen(false);
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      setMobileMenuOpen(false);
+    }
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (!href || href.length < 2) return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        setMobileMenuOpen(false);
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
