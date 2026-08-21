@@ -3,9 +3,9 @@
 <head>
   {% include head.html %}
 </head>
-<body class="font-body text-gray-900 leading-relaxed text-base sm:text-[17px]">
-  {% assign nav_style = page.nav_style | default: layout.nav_style | default: "home" %}
-  {% include nav.html nav_style=nav_style %}
+{% assign body_class = page.body_class | default: layout.body_class %}
+<body class="font-body text-gray-900 leading-relaxed text-base sm:text-[17px]{% if body_class %} {{ body_class }}{% endif %}">
+  {% include nav.html %}
   {{ content }}
   {% include footer.html %}
   {% include scripts.html %}

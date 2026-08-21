@@ -2,7 +2,7 @@
 
 Marketing site for [justenoughai.co.uk](https://justenoughai.co.uk), built with [Jekyll](https://jekyllrb.com/) and hosted on [GitHub Pages](https://pages.github.com/).
 
-The homepage is a single page. Industry-specific landing pages live under `/for/` (for example `/for/estate-agents/`) and share the same brand, layout, and components.
+The homepage is a single page with card-based sections. Industry landing pages under `/for/` (e.g. `/for/estate-agents/`) use the same brand colours and fonts but an editorial layout — conversational prose and longer-form idea sections rather than mirroring the homepage structure.
 
 ## Local development
 
@@ -34,7 +34,7 @@ Output goes to `_site/` (ignored by git).
 │   └── vertical.html       # Industry landing page template
 ├── _includes/
 │   ├── head.html           # Meta, fonts, Tailwind config
-│   ├── nav.html            # Navigation (home vs vertical)
+│   ├── nav.html            # Site navigation (shared across all pages)
 │   ├── footer.html
 │   └── scripts.html        # Mobile nav, smooth scroll
 ├── _for/                   # Vertical landing pages (Jekyll collection)
@@ -66,28 +66,53 @@ No layout changes are needed unless you want a new section type.
 
 ### Front matter schema
 
-All copy for a vertical page lives in YAML front matter. The `vertical` layout renders five sections; the **Tools** section is omitted when `tools` is empty.
+All copy for a vertical page lives in YAML front matter. The `vertical` layout renders:
+
+1. **Hero** — dark blue band, audience label, headline, hero image
+2. **Sound familiar?** — conversational prose (not cards)
+3. **Where AI actually helps** — numbered long-form idea sections
+4. **Products** — optional off-the-shelf product cards; hidden when `products: []`
+5. **Want to see if this fits?** — split CTA on dark blue
 
 | Field | Required | Description |
 |-------|----------|-------------|
 | `layout` | Yes | Use `vertical` (set automatically for `_for/` via `_config.yml`) |
 | `title` | Yes | Browser tab / SEO title |
 | `description` | Yes | Meta description |
-| `audience` | Yes | Used in headline: “Just enough AI for **{audience}**.” |
+| `audience` | Yes | Used in headline and hero label: “For **{audience}**” |
 | `tagline` | Yes | One line under the headline |
-| `hero_image` | No | Path from site root, e.g. `images/verticals/estate-agents-hero.svg`. Defaults to `images/robot-2.svg` |
+| `hero_image` | No | Path from site root. Defaults to `images/robot-2.svg` |
 | `hero_alt` | No | Alt text for hero image |
-| `hero_glow` | No | Blur behind hero: `yellow`, `blue`, or `red` (default `yellow`) |
-| `pain_intro` | No | Optional subheading under “Sound familiar?” |
-| `pain_points` | Yes | List of `{ emoji, title, description }` |
-| `helps_intro` | No | Optional intro under “Where AI actually helps” |
-| `helps` | Yes | List of `{ title, description }` |
-| `tools` | No | List of `{ title, description }`. Leave as `[]` to hide the section |
-| `tools_intro` | No | Optional intro for tools section |
+| `hero_glow` | No | Glow behind hero: `red` (default, homepage hero), `yellow`, or `blue` |
+| `familiar_highlight` | Yes* | Pull-quote style opener for “Sound familiar?” |
+| `familiar_paragraphs` | Yes* | List of conversational paragraphs |
+| `ideas_intro` | No | Short intro above the ideas section |
+| `ideas` | Yes | Long-form sections (see below) |
+| `products_heading` | No | Section heading (default “Off-the-shelf, ready when you are”) |
+| `products_intro` | No | Intro copy beside the heading |
+| `products` | No | Product cards (see below). Leave as `[]` to hide |
 | `closer_heading` | No | Defaults to “Let's find where AI can help you” |
 | `closer_body` | No | Defaults to low-pressure CTA copy |
 
-### Example: minimal new page
+\*Use `familiar_highlight` + `familiar_paragraphs` for the conversational section. Legacy `pain_points` (card-style) still works as a fallback but is not recommended for new pages.
+
+#### Idea sections (`ideas`)
+
+Each idea supports longer copy — a lead line, multiple paragraphs, and an optional callout:
+
+```yaml
+ideas:
+  - title: Listing copy that learns your voice
+    lead: Not a template. Not generic AI slop.
+    paragraphs:
+      - First paragraph of the idea…
+      - Second paragraph…
+    note: Optional “Worth knowing” callout — e.g. how this avoids generic AI output.
+```
+
+Legacy short `helps: [{ title, description }]` still renders if `ideas` is omitted.
+
+### Example: new vertical page
 
 ```yaml
 ---
@@ -98,28 +123,37 @@ audience: solicitors
 tagline: You're billing for advice, not retyping the same email.
 hero_image: images/verticals/solicitors-hero.svg
 hero_glow: yellow
-pain_points:
-  - emoji: "📄"
-    title: Document review eats the day
-    description: "..."
-helps:
-  - title: First-draft client updates
-    description: "..."
-tools: []
+familiar_highlight: You know AI could help. You're just not sure where it fits in a firm that lives and dies by accuracy.
+familiar_paragraphs:
+  - Every legal tech vendor promises transformation…
+  - Maybe you tried ChatGPT for a client update…
+ideas_intro: A few places we've seen AI earn its keep in practice.
+ideas:
+  - title: Client updates in your firm's voice
+    lead: First drafts that sound like a partner wrote them — not a chatbot.
+    paragraphs:
+      - We learn from how your team already writes…
+    note: Nothing sends without a human review.
+products: []
 ---
 ```
 
-### Showing the “Tools we've already built” section
+#### Product cards (`products`)
 
-Populate `tools` with one or more items:
+Each product is an off-the-shelf offering:
 
 ```yaml
-tools:
-  - title: Listing draft assistant
-    description: Turns viewing notes into Rightmove-ready copy in your agency's tone.
+products:
+  - title: Listing Draft
+    tagline: Rightmove-ready copy from your notes
+    status: Available now          # "Available now" (green) or "In development" (amber)
+    badge: Free                    # optional — highlighted when "Free"
+    description: What the product does.
+    includes:                      # optional bullet list
+      - Trained on your listings
 ```
 
-Remove the section again by setting `tools: []`.
+Hide the section with `products: []`.
 
 ## Editing the homepage
 

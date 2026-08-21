@@ -17,11 +17,10 @@ defaults:
       type: for
     values:
       layout: vertical
+      noindex: true
 
 exclude:
   - Gemfile
   - Gemfile.lock
-  - index-alt.html
-  - landing.html
   - README.md
   - .gitignore
