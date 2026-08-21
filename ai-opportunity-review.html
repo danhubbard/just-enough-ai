@@ -29,20 +29,29 @@ spots_remaining: 17
           The AI Opportunity Review
         </p>
         <h1 class="font-heading text-[2rem] leading-[1.08] sm:text-4xl md:text-[2.75rem] lg:text-5xl font-bold tracking-[-0.02em] mb-5 sm:mb-6">
-          Find out where AI actually fits your business
+          Find out where AI actually fits <em>your</em> business
         </h1>
         <p class="text-lg sm:text-xl text-white/75 leading-relaxed max-w-xl mb-6 sm:mb-8">
-          We look at how your business actually runs. You get a short, ranked list of what's worth doing and what isn't.
+          We look at how your business actually runs and find where applying AI could help you save money, time or sanity.
         </p>
-        <p class="text-base sm:text-lg text-white/60 mb-8 sm:mb-10">
-          Normally <span class="line-through decoration-white/40">£{{ page.price_full }}</span>.
-          <span class="text-yellow font-semibold">£{{ page.price_offer }}</span> for the first {{ page.spots_total }} businesses.
-          <span class="text-white/80">{{ page.spots_remaining }} left.</span>
+        <p class="text-lg sm:text-xl text-white/75 leading-relaxed max-w-xl mb-6 sm:mb-8">
+          You get a short, ranked list of what's worth doing and what isn't.
         </p>
-        <a href="#pricing" class="inline-flex items-center gap-2 text-sm font-medium text-yellow hover:text-white transition-colors group">
-          See what you get
-          <span class="group-hover:translate-y-0.5 transition-transform" aria-hidden="true">↓</span>
-        </a>
+        <div class="flex flex-wrap items-center gap-4 sm:gap-5">
+          <a href="#how" class="inline-flex items-center gap-2 text-sm font-medium text-yellow hover:text-white transition-colors group">
+            See how it works
+            <span class="group-hover:translate-y-0.5 transition-transform" aria-hidden="true">↓</span>
+          </a>
+          <a href="#pricing"
+             aria-label="Launch offer: {{ page.price_offer }} pounds instead of {{ page.price_full }}, {{ page.spots_remaining }} places left. See pricing."
+             class="inline-flex items-center gap-2.5 pl-3.5 pr-4 py-2 rounded-full bg-white/10 border border-white/15 text-sm hover:bg-white/15 hover:border-yellow/50 transition-all">
+            <span class="text-[10px] font-semibold uppercase tracking-widest text-yellow" aria-hidden="true">Offer</span>
+            <span class="text-white/50 line-through decoration-white/40" aria-hidden="true">£{{ page.price_full }}</span>
+            <span class="font-semibold text-white" aria-hidden="true">£{{ page.price_offer }}</span>
+            <span class="text-white/30" aria-hidden="true">·</span>
+            <span class="text-white/70" aria-hidden="true">{{ page.spots_remaining }} left</span>
+          </a>
+        </div>
       </div>
       <div class="hidden sm:flex justify-end shrink-0">
         <div class="relative w-[min(64%,13rem)] md:w-[min(72%,15rem)] lg:w-[min(100%,clamp(14rem,32vw,26rem))]">
@@ -64,15 +73,18 @@ spots_remaining: 17
 <section class="py-20 sm:py-28 md:py-32 bg-cream">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="max-w-2xl">
-      <p class="text-xs font-semibold uppercase tracking-widest text-blue mb-4">Sound familiar?</p>
+      <p class="text-xs font-semibold uppercase tracking-widest text-blue mb-4">The crux</p>
       <p class="font-heading text-2xl sm:text-3xl md:text-[2rem] font-semibold leading-snug text-gray-900 mb-8 sm:mb-10">
-        You've read the headlines. You've had a go with ChatGPT. Then you got on with your week.
+        You have a feeling that AI could probably help, but you're not sure where or how. 
+      </p>
+      <p class="font-heading text-2xl sm:text-3xl md:text-[2rem] font-semibold leading-snug text-gray-900 mb-8 sm:mb-10">
+        
       </p>
       <div class="prose-block text-base sm:text-lg text-muted leading-relaxed">
-        <p>The question isn't whether AI works. It's whether it works <em>here</em>. In a business your size, with your systems, and the people you've actually got.</p>
-        <p>Everyone's telling you to adopt AI. Nobody's telling you what to adopt. So it stays on the list of things you'll get to.</p>
-        <p>There's a job in your week that eats three hours and nobody enjoys. A machine could do most of it. There are also four ideas that sound great and would waste your money.</p>
-        <p>Knowing which is which is the point of this.</p>
+        <p>Maybe you've tried ChatGPT or even set up an automation with Zapier, but they didn't quite deliver what you needed.</p>
+        <p>Everyone's telling you to adopt AI. But nobody's telling you which tools or how to implement them. So it stays on the list of things you'll get to.</p>
+        <p>There's a job in your week that eats three hours and nobody enjoys. A machine could do most of it. There's also four ways to do it that don't make sense in your business and would waste your money.</p>
+        <p>Knowing which is which is the point of our AI Opportunity Review.</p>
       </div>
     </div>
   </div>
@@ -83,7 +95,7 @@ spots_remaining: 17
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="pt-16 sm:pt-20 pb-8 sm:pb-12 border-b border-border">
       <p class="text-xs font-semibold uppercase tracking-widest text-yellow mb-3">How it works</p>
-      <p class="text-muted max-w-xl text-base sm:text-lg">Two weeks start to finish. About two hours of your time.</p>
+      <p class="text-muted max-w-xl text-base sm:text-lg">A couple of hours of your time, and we'll deliver a short, ranked report.</p>
     </div>
 
     <article class="py-14 sm:py-20 border-b border-border">
@@ -93,14 +105,14 @@ spots_remaining: 17
         </div>
         <div class="lg:col-span-11 max-w-3xl">
           <h2 class="font-heading text-xl sm:text-2xl md:text-[1.75rem] font-semibold text-gray-900 leading-snug mb-4 sm:mb-5">
-            Ninety minutes on how you work
+            Ninety minutes on how you actually work
           </h2>
           <p class="text-base sm:text-lg text-gray-900 font-medium leading-relaxed mb-6">
-            Not a demo. Questions.
+            Not a demo. A conversation.
           </p>
           <div class="step-body text-muted text-base sm:text-[1.0625rem] leading-relaxed">
-            <p>We go through a normal week with you. Where the hours go. What gets repeated. What gets dropped when you're busy. What you're still doing by hand because nobody got round to fixing it.</p>
-            <p>We'll want to see the real thing. The actual spreadsheet, the actual inbox, the actual process. Not a description of it.</p>
+            <p>We go through a normal week with you. Where the hours go. What gets repeated. What gets dropped when you're busy. What you're still doing by hand that feels like it could be automated.</p>
+            <p>We'll want to see the real thing. The actual spreadsheet, the inbox, the process.</p>
           </div>
         </div>
       </div>
@@ -113,19 +125,19 @@ spots_remaining: 17
         </div>
         <div class="lg:col-span-11 max-w-3xl">
           <h2 class="font-heading text-xl sm:text-2xl md:text-[1.75rem] font-semibold text-gray-900 leading-snug mb-4 sm:mb-5">
-            We go away and think about it
+            We list and rank the opportunities
           </h2>
           <p class="text-base sm:text-lg text-gray-900 font-medium leading-relaxed mb-6">
-            This is the bit you're paying for.
+            Clarity, not more confusion.
           </p>
           <div class="step-body text-muted text-base sm:text-[1.0625rem] leading-relaxed">
-            <p>We work out what's solvable now, with tools that exist and work today. Not what might be possible in eighteen months.</p>
-            <p>Everything we find gets a rough build cost and a rough saving. Some are an afternoon's work. Some are a proper project. Some turn out to be a £40-a-month tool that does the job — far better to know that than spend twenty grand finding out.</p>
+            <p>We work out what's solvable now, with tools that exist and work today.</p>
+            <p>Everything we find gets a rough implementation cost and a rough saving. Some are an afternoon's work. Some are a proper project. Some turn out to be an off-the-shelf tool that does the job.</p>
             <p>We look just as hard for what you shouldn't do. Talking you out of one bad project pays for this several times over.</p>
           </div>
           <aside class="mt-8 sm:mt-10 pl-5 sm:pl-6 border-l-4 border-yellow py-1">
             <p class="text-sm sm:text-base text-blue-dark leading-relaxed">
-              <span class="font-semibold text-gray-900">Worth knowing:</span> we rank by what pays you back, not by what's interesting to build. You get the same answer whether it's "build this" or "buy that off the shelf."
+              <span class="font-semibold text-gray-900">Worth knowing:</span> we rank by what pays you back - in money, time or sanity - not by what's interesting to build or the latest shiny thing. You get the same answer whether it's "build this" or "buy that off the shelf."
             </p>
           </aside>
         </div>
@@ -142,12 +154,12 @@ spots_remaining: 17
             A short, ranked report. It's yours.
           </h2>
           <p class="text-base sm:text-lg text-gray-900 font-medium leading-relaxed mb-6">
-            Short enough to read in one sitting. Every line is a decision.
+            Problems, solutions and trade-offs for you to act on.
           </p>
           <div class="step-body text-muted text-base sm:text-[1.0625rem] leading-relaxed">
             <p>Everything we found, ranked by payoff against effort. What it'd cost. What it'd save. What to do first and what to leave. Plus what we ruled out, and why.</p>
-            <p>Most businesses we look at have three or four things worth doing. Usually one of them pays for itself within a couple of months.</p>
-            <p>We walk you through it on a call and answer whatever you ask. Then it's yours to act on — build it in-house, hand it to someone else, or hire us. No retainer, nothing recurring.</p>
+            <p>Most businesses we look at have a few small things worth doing. Usually one of them stands out as the best value for money and effort, and pays for itself within a couple of months.</p>
+            <p>We walk you through it on a call, or in person if you're near us, and answer whatever you ask. Then it's yours to keep and act on — build it in-house, hand it to someone else, or hire us. No retainer, no obligation, nothing recurring.</p>
           </div>
         </div>
       </div>
@@ -159,7 +171,7 @@ spots_remaining: 17
 <section id="pricing" class="py-20 sm:py-28 bg-cream border-t border-border">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="max-w-2xl mb-12 sm:mb-14">
-      <p class="text-xs font-semibold uppercase tracking-widest text-blue mb-3">The offer</p>
+      <p class="text-xs font-semibold uppercase tracking-widest text-blue mb-3">Autumn 2026 offer</p>
       <h2 class="font-heading text-2xl sm:text-3xl md:text-[2rem] font-semibold text-gray-900 leading-snug">
         £{{ page.price_offer }} for the first {{ page.spots_total }} businesses
       </h2>
@@ -172,24 +184,13 @@ spots_remaining: 17
       <!-- Price card -->
       <div class="bg-white rounded-2xl border-4 border-yellow overflow-hidden shadow-sm">
         <div class="px-7 sm:px-9 pt-8 sm:pt-9 pb-7 border-b border-border">
-          <div class="flex items-center justify-between gap-3 mb-6">
-            <span class="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
-              Taking bookings
-            </span>
-            <span class="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-yellow/35 text-blue-dark">
-              Launch price
-            </span>
-          </div>
-
           <h3 class="font-heading text-xl sm:text-[1.35rem] font-bold text-gray-900 leading-tight mb-1">AI Opportunity Review</h3>
           <p class="text-sm font-medium text-blue mb-6 leading-snug">One business. One report.</p>
 
           <div class="flex items-end flex-wrap gap-x-4 gap-y-1">
-            <span class="font-heading text-5xl sm:text-6xl font-bold text-gray-900 leading-none tracking-[-0.03em]">£{{ page.price_offer }}</span>
-            <span class="text-xl sm:text-2xl text-muted/70 line-through decoration-2 decoration-muted/50 leading-none pb-1">£{{ page.price_full }}</span>
+            <span class="font-heading text-5xl sm:text-6xl font-bold text-green-700 leading-none tracking-[-0.03em]">£{{ page.price_offer }}</span>
+            <span class="text-xl sm:text-2xl text-red-500 line-through decoration-2 decoration-red-500 leading-none pb-1">£{{ page.price_full }}</span>
           </div>
-          <p class="text-sm text-muted mt-3">One-off. Plus VAT. Nothing recurring.</p>
         </div>
 
         <!-- Remaining counter -->
@@ -204,16 +205,16 @@ spots_remaining: 17
             <div class="h-full bg-yellow rounded-full transition-all" style="width: {{ spots_pct }}%"></div>
           </div>
           <p class="text-sm text-muted mt-3 leading-relaxed">
-            When they're gone, it goes back to £{{ page.price_full }}. We won't reset the counter.
+            Limited to {{ page.spots_total }} businesses.
           </p>
         </div>
 
         <div class="px-7 sm:px-9 py-7 sm:py-8">
           <a href="mailto:{{ site.email }}?subject=AI%20Opportunity%20Review" class="inline-flex items-center justify-center gap-2 w-full px-8 py-4 bg-blue-light text-white text-lg font-semibold rounded-lg border-2 border-yellow hover:bg-blue-dark hover:text-yellow transition-all hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow focus-visible:ring-offset-2">
-            Claim a place
+            Request a review
           </a>
           <p class="text-sm text-muted text-center mt-4 leading-relaxed">
-            Email {{ site.email }} and tell us what you do. We'll reply the same day.
+            or email <span class="font-semibold text-blue-dark"><a href="mailto:{{ site.email }}">{{ site.email }}</a></span> and tell us what you do.<br> We'll get back to you the same day.
           </p>
         </div>
       </div>
@@ -236,7 +237,7 @@ spots_remaining: 17
           </li>
           <li class="text-sm sm:text-[0.9375rem] text-muted flex items-start gap-3 leading-relaxed">
             <span class="text-yellow shrink-0 mt-0.5" aria-hidden="true">✓</span>
-            <span><strong class="text-gray-900 font-medium">A 45-minute walkthrough</strong> — we talk it through and answer whatever you ask.</span>
+            <span><strong class="text-gray-900 font-medium">A walkthrough and chat</strong> — we talk it through and answer whatever you ask.</span>
           </li>
           <li class="text-sm sm:text-[0.9375rem] text-muted flex items-start gap-3 leading-relaxed">
             <span class="text-yellow shrink-0 mt-0.5" aria-hidden="true">✓</span>
@@ -244,12 +245,6 @@ spots_remaining: 17
           </li>
         </ul>
 
-        <div class="mt-7 pt-6 border-t border-border">
-          <p class="text-xs font-semibold uppercase tracking-widest text-muted mb-3">What it isn't</p>
-          <p class="text-sm text-muted leading-relaxed">
-            No strategy deck. No readiness score. No maturity model. You get a list of specific things, in order, with numbers next to them.
-          </p>
-        </div>
       </div>
     </div>
   </div>
@@ -260,12 +255,12 @@ spots_remaining: 17
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-end">
       <div>
-        <p class="text-xs font-semibold uppercase tracking-widest text-yellow mb-4">Still {{ page.spots_remaining }} left</p>
+        <p class="text-xs font-semibold uppercase tracking-widest text-yellow mb-4">{{ page.spots_remaining }} spots left</p>
         <h2 class="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold leading-snug mb-5 sm:mb-6 max-w-md">
           Stop guessing about AI
         </h2>
         <p class="text-base sm:text-lg text-white/70 leading-relaxed max-w-md">
-          Two hours of your time and £{{ page.price_offer }}, and you'll know where AI pays off in your business, what it costs, and what to do first. Email us and tell us what you do.
+          Two hours of your time and just £{{ page.price_offer }}, and you'll know where AI pays off in your business, what it costs, and what to do first. Email us and tell us what you do.
         </p>
       </div>
       <div class="md:text-right">
