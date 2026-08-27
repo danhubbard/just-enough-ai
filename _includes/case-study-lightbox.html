@@ -1,0 +1,106 @@
+{% comment %}
+  Lightweight image lightbox for case study galleries. No dependencies.
+  Included once per page by the case-study layout when the page has images.
+{% endcomment %}
+<div id="cs-lightbox" class="fixed inset-0 z-[60] hidden items-center justify-center bg-gray-900/92 p-4 sm:p-8" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
+  <button type="button" id="cs-lb-close" class="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center justify-center w-11 h-11 rounded-full bg-white/10 text-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow transition-colors" aria-label="Close image viewer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="w-5 h-5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+
+  <button type="button" id="cs-lb-prev" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 flex items-center justify-center w-11 h-11 rounded-full bg-white/10 text-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow transition-colors" aria-label="Previous image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button type="button" id="cs-lb-next" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 flex items-center justify-center w-11 h-11 rounded-full bg-white/10 text-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow transition-colors" aria-label="Next image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+
+  <figure class="max-w-6xl w-full max-h-full flex flex-col items-center gap-4">
+    <img id="cs-lb-image" src="" alt="" class="max-h-[78vh] w-auto max-w-full rounded-xl shadow-2xl object-contain bg-white">
+    <figcaption class="text-center text-sm text-white/70 leading-snug max-w-2xl">
+      <span id="cs-lb-caption"></span>
+      <span id="cs-lb-counter" class="block text-xs text-white/40 mt-1.5"></span>
+    </figcaption>
+  </figure>
+</div>
+
+<script>
+(function () {
+  const box = document.getElementById('cs-lightbox');
+  const triggers = Array.from(document.querySelectorAll('.cs-lb-trigger'));
+  if (!box || !triggers.length) return;
+
+  const img = document.getElementById('cs-lb-image');
+  const caption = document.getElementById('cs-lb-caption');
+  const counter = document.getElementById('cs-lb-counter');
+  const closeBtn = document.getElementById('cs-lb-close');
+  const prevBtn = document.getElementById('cs-lb-prev');
+  const nextBtn = document.getElementById('cs-lb-next');
+  // The same gallery can be rendered in more than one slot, so collapse
+  // duplicate images to one entry and point every trigger at it.
+  const bySrc = new Map();
+  const items = [];
+  triggers.forEach((t) => {
+    const src = t.dataset.src;
+    if (!bySrc.has(src)) {
+      bySrc.set(src, items.length);
+      items.push({ src: src, alt: t.dataset.alt || '', caption: t.dataset.caption || '' });
+    }
+  });
+  const multiple = items.length > 1;
+
+  let index = 0;
+  let lastFocused = null;
+
+  prevBtn.hidden = !multiple;
+  nextBtn.hidden = !multiple;
+
+  function show(i) {
+    index = (i + items.length) % items.length;
+    const item = items[index];
+    img.src = item.src;
+    img.alt = item.alt;
+    caption.textContent = item.caption;
+    counter.textContent = multiple ? (index + 1) + ' / ' + items.length : '';
+  }
+
+  function open(i) {
+    lastFocused = document.activeElement;
+    show(i);
+    box.classList.remove('hidden');
+    box.classList.add('flex');
+    box.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('overflow-hidden');
+    closeBtn.focus();
+  }
+
+  function close() {
+    box.classList.add('hidden');
+    box.classList.remove('flex');
+    box.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('overflow-hidden');
+    img.src = '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  triggers.forEach((t) => t.addEventListener('click', () => open(bySrc.get(t.dataset.src))));
+  closeBtn.addEventListener('click', close);
+  prevBtn.addEventListener('click', () => show(index - 1));
+  nextBtn.addEventListener('click', () => show(index + 1));
+
+  box.addEventListener('click', (e) => { if (e.target === box) close(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (box.classList.contains('hidden')) return;
+    if (e.key === 'Escape') { e.stopPropagation(); close(); }
+    else if (multiple && e.key === 'ArrowLeft') show(index - 1);
+    else if (multiple && e.key === 'ArrowRight') show(index + 1);
+    else if (e.key === 'Tab') {
+      const focusable = [closeBtn, prevBtn, nextBtn].filter(el => !el.hidden);
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }, true);
+})();
+</script>

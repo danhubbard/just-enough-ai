@@ -1,0 +1,43 @@
+{% comment %}
+  Drives the mobile gallery scroller: active dot, and fades the swipe hint
+  once the reader has scrolled. Grid layout above `sm` needs none of this.
+{% endcomment %}
+<script>
+(function () {
+  if (window.__csGalleryInit) return;
+  window.__csGalleryInit = true;
+
+  document.querySelectorAll('.cs-gallery').forEach(function (gallery) {
+    const track = gallery.querySelector('.cs-gallery-track');
+    const dots = Array.from(gallery.querySelectorAll('.cs-gallery-dot'));
+    const hint = gallery.querySelector('.cs-gallery-hint');
+    const items = Array.from(track ? track.children : []);
+    if (!track || !items.length) return;
+
+    let scrolled = false;
+
+    function sync() {
+      if (!dots.length) return;
+      const centre = track.scrollLeft + track.clientWidth / 2;
+      let best = 0;
+      let bestGap = Infinity;
+      items.forEach(function (item, i) {
+        const gap = Math.abs(item.offsetLeft + item.offsetWidth / 2 - centre);
+        if (gap < bestGap) { bestGap = gap; best = i; }
+      });
+      dots.forEach(function (dot, i) { dot.classList.toggle('is-active', i === best); });
+    }
+
+    track.addEventListener('scroll', function () {
+      if (!scrolled && track.scrollLeft > 8) {
+        scrolled = true;
+        if (hint) hint.classList.add('opacity-0');
+      }
+      window.requestAnimationFrame(sync);
+    }, { passive: true });
+
+    window.addEventListener('resize', sync);
+    sync();
+  });
+})();
+</script>

@@ -1,0 +1,62 @@
+{% comment %}
+  Case study gallery.
+  Mobile: horizontal snap scroller, next image peeking, dots + swipe hint.
+  sm and up: static grid that adapts to the image count.
+  Every image opens the lightbox (case-study-lightbox.html must be on the page).
+{% endcomment %}
+{% assign count = page.images | size %}
+{% if count == 1 %}
+  {% assign grid = "grid-cols-1" %}
+{% elsif count == 3 %}
+  {% assign grid = "sm:grid-cols-2 lg:grid-cols-3" %}
+{% else %}
+  {% assign grid = "sm:grid-cols-2" %}
+{% endif %}
+
+<div class="cs-gallery">
+  <div class="cs-gallery-track flex sm:grid {{ grid }} gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible snap-x snap-mandatory scroll-pl-5 sm:scroll-pl-0 -mx-5 px-5 sm:mx-0 sm:px-0 pb-1">
+    {% for image in page.images %}
+    <figure class="snap-start {% if count > 1 %}shrink-0 w-[78%] sm:w-auto{% else %}w-full{% endif %}">
+      <button
+        type="button"
+        class="cs-lb-trigger group block w-full text-left rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-dark focus-visible:ring-offset-2"
+        data-src="{{ image.src | relative_url }}"
+        data-alt="{{ image.alt | default: page.headline | escape }}"
+        data-caption="{{ image.caption | escape }}"
+        aria-label="Enlarge image: {{ image.alt | default: page.headline | escape }}"
+      >
+        <span class="relative block rounded-2xl border-2 border-border overflow-hidden bg-cream transition-colors group-hover:border-yellow">
+          <img
+            src="{{ image.src | relative_url }}"
+            alt="{{ image.alt | default: page.headline | escape }}"
+            class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            loading="lazy"
+            decoding="async"
+          >
+          <span class="absolute bottom-3 right-3 flex items-center justify-center w-9 h-9 rounded-full bg-blue-dark/85 text-white opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+            </svg>
+          </span>
+        </span>
+      </button>
+    </figure>
+    {% endfor %}
+  </div>
+
+  {% if count > 1 %}
+  <div class="sm:hidden mt-4" aria-hidden="true">
+    <div class="flex items-center justify-center gap-2">
+      {% for image in page.images %}
+      <span class="cs-gallery-dot w-1.5 h-1.5 rounded-full bg-border transition-all duration-200"></span>
+      {% endfor %}
+    </div>
+    <p class="cs-gallery-hint flex items-center justify-center gap-1.5 text-xs text-muted mt-3 transition-opacity duration-300">
+      Swipe to see all {{ count }}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </svg>
+    </p>
+  </div>
+  {% endif %}
+</div>

@@ -155,6 +155,95 @@ products:
 
 Hide the section with `products: []`.
 
+## Adding a case study
+
+Case studies live in `_work/` and all use the `case-study` layout. Everything on the page comes from front matter — no layout changes needed for a new one.
+
+1. Copy the template:
+
+   ```bash
+   cp _work/_template.md _work/acme-lettings.md
+   ```
+
+   `_template.md` starts with an underscore, so Jekyll never builds it. It stays put as the copy source.
+
+2. Fill in the front matter (schema below). The URL comes from the filename: `_work/acme-lettings.md` → `/work/acme-lettings/`.
+
+3. Set `order`. The sidebar sorts by it, and the **Work** menu item points at the lowest-numbered case study — so `order: 1` is the one people land on.
+
+4. Drop any gallery images in `images/work/` and list them under `images` (1–4 works best).
+
+Case studies are `noindex` by default (set in `_config.yml`, same as the vertical pages). Remove that default when you're ready for them to be indexed.
+
+### What the layout renders
+
+1. **Hero** — dark blue band, client label, headline, strapline, optional key/value meta row and hero image
+2. **Sidebar** — links to every case study, current one highlighted (a horizontal pill row on mobile)
+3. **The opportunity / What we did / The result** — prose sections, each optional
+4. **Stats, quote** — optional, shown under “The result”
+5. **Gallery** — 1–4 images, grid adapts to the count, click to enlarge
+6. **Closer** — the shared dark blue CTA
+
+Any section with no content is skipped entirely.
+
+### Front matter schema
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `order` | Yes | Sort order. Lowest is the “Work” menu destination |
+| `title` | Yes | Browser tab / SEO title |
+| `description` | Yes | Meta description |
+| `client` | Yes | Hero eyebrow label |
+| `nav_title` | No | Sidebar label. Defaults to `client` |
+| `sector` | No | Small line under the sidebar label |
+| `headline` | Yes | Hero `<h1>`. Defaults to `title` |
+| `strapline` | No | One or two lines under the headline |
+| `meta` | No | List of `{ label, value }` shown as a row in the hero |
+| `client_logo` | No | Client logo in the hero. Needs to be white or light — it sits on the dark blue band |
+| `client_logo_alt` | No | Alt text for the logo. Defaults to `client` |
+| `hero_image` | No | Mascot-style hero image, used only when there's no `client_logo`. Omit both for a text-only hero |
+| `hero_alt` | No | Alt text for the hero image |
+| `hero_glow` | No | Glow behind hero: `blue` (default), `yellow`, or `red` |
+| `opportunity_lead` | No | Pull-quote style opener for the section |
+| `opportunity` | No | List of paragraphs |
+| `what_we_did_lead` / `what_we_did` | No | Same shape as above |
+| `result_lead` / `result` | No | Same shape as above |
+| `stats` | No | List of `{ value, label }` — 1–3 render nicely |
+| `quote` / `quote_attribution` | No | Client quote under “The result” |
+| `images` | No | Gallery images (see below). Leave as `[]` to hide |
+| `gallery_position` | No | Where the gallery renders (see below). Accepts one value or a list |
+| `closer_heading` / `closer_body` | No | Overrides the default CTA copy |
+
+Section headings can be overridden with `opportunity_heading`, `what_we_did_heading` and `result_heading` if a particular story needs different framing.
+
+#### Gallery images
+
+```yaml
+images:
+  - src: images/work/acme-dashboard.png
+    alt: The listing drafting screen
+    caption: Optional caption under the image
+```
+
+The grid adapts: one image goes full width, two or four sit in a 2-up grid, three go 3-up on desktop. Clicking one opens a lightbox — arrow keys and Esc work, and it's skipped entirely on pages with no images.
+
+`gallery_position` controls where it renders:
+
+| Value | Where |
+|-------|-------|
+| `after_hero` | Full-width band under the hero, above the sidebar |
+| `body_top` | Top of the text column, above “The opportunity” |
+| `opportunity` / `what_we_did` / `result` | Directly after that section (`what_we_did` is the default) |
+| `end` | Last thing in the text column |
+
+It also takes a list — `gallery_position: [after_hero, result]` — which renders the gallery in both places. The lightbox collapses duplicates, so it still counts three images, not six.
+
+Captions don't show under the thumbnails; they appear when an image is enlarged.
+
+#### Markdown body
+
+Anything written below the front matter is rendered as an extra prose block after the three sections. Most case studies won't need it — use the YAML fields so every page stays consistent.
+
 ## Editing the homepage
 
 Edit [`index.html`](index.html) (body sections only). Shared chrome lives in `_includes/` and `_layouts/`. Site-wide settings (email, URL, collection) are in [`_config.yml`](_config.yml).
@@ -167,6 +256,8 @@ After deploy:
 
 - Homepage: `https://justenoughai.co.uk/`
 - Vertical example: `https://justenoughai.co.uk/for/estate-agents/`
+- Case studies: `https://justenoughai.co.uk/work/` (redirects to the first one)
+- Case study example: `https://justenoughai.co.uk/work/sng-site-report-generator/`
 
 ## Brand / styling
 

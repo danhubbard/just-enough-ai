@@ -1,4 +1,6 @@
 {% assign home_url = "/" | relative_url %}
+{% assign first_case_study = site.work | sort: "order" | first %}
+{% unless site.show_work_nav %}{% assign first_case_study = nil %}{% endunless %}
 {% if page.url == '/' or page.url == '/index.html' %}
   {% assign services_link = '#services' %}
   {% assign about_link = '#about' %}
@@ -17,6 +19,9 @@
     <ul class="hidden md:flex items-center gap-8">
       <li><a href="{{ services_link }}" class="text-muted text-sm font-medium hover:text-blue transition-colors">What we do</a></li>
       <li><a href="{{ about_link }}" class="text-muted text-sm font-medium hover:text-blue transition-colors">About us</a></li>
+      {% if first_case_study %}
+      <li><a href="{{ first_case_study.url | relative_url }}" class="{% if page.collection == 'work' %}text-blue{% else %}text-muted{% endif %} text-sm font-medium hover:text-blue transition-colors">Work</a></li>
+      {% endif %}
       <li><a href="{{ contact_link }}" class="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-dark text-white text-sm font-medium rounded-lg hover:bg-blue-light transition-all hover:-translate-y-0.5">Let's Talk</a></li>
     </ul>
     <button type="button" id="nav-toggle" class="md:hidden relative z-10 p-2 -mr-2 rounded-lg hover:bg-cream/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-dark/40" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
@@ -29,6 +34,9 @@
     <ul class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1">
       <li><a href="{{ services_link }}" class="block py-3 text-base font-medium text-gray-900 border-b border-border/80">What we do</a></li>
       <li><a href="{{ about_link }}" class="block py-3 text-base font-medium text-gray-900 border-b border-border/80">About</a></li>
+      {% if first_case_study %}
+      <li><a href="{{ first_case_study.url | relative_url }}" class="block py-3 text-base font-medium text-gray-900 border-b border-border/80">Work</a></li>
+      {% endif %}
       <li><a href="{{ contact_link }}" class="block py-3 text-base font-medium text-gray-900 border-b border-border/80">Let's Talk</a></li>
     </ul>
   </div>

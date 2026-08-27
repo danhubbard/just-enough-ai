@@ -3,10 +3,18 @@ email: hello@justenoughai.co.uk
 url: "https://justenoughai.co.uk"
 baseurl: ""
 
+# Set to true to show the "Work" item in the site nav.
+# Case studies stay reachable by URL either way; they're noindex until
+# the `type: work` default below is removed.
+show_work_nav: false
+
 collections:
   for:
     output: true
     permalink: /for/:name/
+  work:
+    output: true
+    permalink: /work/:name/
 
 defaults:
   - scope:
@@ -17,6 +25,11 @@ defaults:
       type: for
     values:
       layout: vertical
+      noindex: true
+  - scope:
+      type: work
+    values:
+      layout: case-study
       noindex: true
 
 exclude:

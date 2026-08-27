@@ -1,0 +1,211 @@
+---
+layout: default
+body_class: case-study-page
+---
+{% assign glow = page.hero_glow | default: "blue" | downcase %}
+{% if glow == "yellow" %}
+  {% assign glow_class = "bg-yellow/80" %}
+{% elsif glow == "red" %}
+  {% assign glow_class = "bg-red-200/60" %}
+{% else %}
+  {% assign glow_class = "bg-blue-light/60" %}
+{% endif %}
+
+{% assign image_count = page.images | size %}
+{% assign gallery_position = page.gallery_position | default: "what_we_did" %}
+{% comment %}gallery_position may be a single value or a list — `contains` handles both.{% endcomment %}
+
+<style>
+  .case-study-page .cs-prose p + p { margin-top: 1.25rem; }
+  .case-study-page .cs-gallery-track { scrollbar-width: none; -ms-overflow-style: none; }
+  .case-study-page .cs-gallery-track::-webkit-scrollbar { display: none; }
+  .case-study-page .cs-gallery-dot.is-active { width: 1.25rem; background-color: #FFBE4A; }
+</style>
+
+<!-- Hero -->
+<section class="relative bg-blue-dark text-white overflow-hidden">
+  <div class="absolute top-0 right-0 w-1/2 h-full bg-blue-light/10 skew-x-[-8deg] translate-x-1/4 pointer-events-none" aria-hidden="true"></div>
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 pt-28 sm:pt-32 pb-16 sm:pb-20 lg:pb-24 relative mt-20">
+    <div class="grid lg:grid-cols-[1fr_auto] gap-6 lg:gap-16 items-center">
+      {% if page.client_logo %}
+      <div class="lg:order-2 flex justify-start lg:justify-end items-center shrink-0">
+        <img
+          src="{{ page.client_logo | relative_url }}"
+          alt="{{ page.client_logo_alt | default: page.client | escape }} logo"
+          class="w-36 sm:w-44 lg:w-[min(100%,clamp(11rem,22vw,17rem))] h-auto object-contain"
+          loading="eager"
+          decoding="async"
+        >
+      </div>
+      {% endif %}
+      <div class="max-w-2xl lg:order-1">
+        <p class="{% if page.client_logo %}hidden lg:inline-flex{% else %}inline-flex{% endif %} items-center gap-2 text-md font-semibold uppercase tracking-widest text-yellow mb-6 sm:mb-4">
+          {{ page.client | default: "Case study" }}
+        </p>
+        <h1 class="font-heading text-[2rem] leading-[1.08] sm:text-4xl md:text-[2.75rem] lg:text-5xl font-bold tracking-[-0.02em] mb-5 sm:mb-6">
+          {{ page.headline | default: page.title }}
+        </h1>
+        {% if page.strapline %}
+        <p class="text-lg sm:text-xl text-white/75 leading-relaxed max-w-xl mb-8 sm:mb-10">
+          {{ page.strapline }}
+        </p>
+        {% endif %}
+        {% if page.meta and page.meta.size > 0 %}
+        <dl class="flex flex-wrap gap-x-10 gap-y-4">
+          {% for item in page.meta %}
+          <div>
+            <dt class="text-[10px] font-semibold uppercase tracking-widest text-yellow mb-1">{{ item.label }}</dt>
+            <dd class="text-sm text-white/80">{{ item.value }}</dd>
+          </div>
+          {% endfor %}
+        </dl>
+        {% endif %}
+      </div>
+      {% if page.hero_image and page.client_logo == nil %}
+      <div class="hidden sm:flex justify-end shrink-0">
+        <div class="relative w-[min(64%,13rem)] md:w-[min(72%,15rem)] lg:w-[min(100%,clamp(14rem,32vw,26rem))]">
+          <div class="absolute inset-0 {{ glow_class }} rounded-[40%] blur-3xl scale-80 translate-y-2" aria-hidden="true"></div>
+          <img
+            src="{{ page.hero_image | relative_url }}"
+            alt="{{ page.hero_alt | default: page.headline | escape }}"
+            class="relative w-full h-auto object-contain drop-shadow-md"
+            loading="eager"
+            decoding="async"
+          >
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% include case-study-nav.html style="pills" %}
+
+{% if image_count > 0 and gallery_position contains "after_hero" %}
+<section class="bg-white border-b border-border">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 py-12 sm:py-16">
+    {% include case-study-gallery.html %}
+  </div>
+</section>
+{% endif %}
+
+<!-- Body -->
+<section class="bg-white">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 py-16 sm:py-20 lg:py-24">
+    <div class="grid lg:grid-cols-[13rem_minmax(0,1fr)] gap-10 lg:gap-16">
+      {% include case-study-nav.html %}
+
+      <div class="max-w-3xl">
+        {% if image_count > 0 and gallery_position contains "body_top" %}
+        <div class="mb-12 sm:mb-16 pb-12 sm:pb-16 border-b border-border">
+          {% include case-study-gallery.html %}
+        </div>
+        {% endif %}
+
+        {% assign sections = "opportunity,what_we_did,result" | split: "," %}
+        {% for key in sections %}
+          {% case key %}
+            {% when "opportunity" %}
+              {% assign heading = page.opportunity_heading | default: "The opportunity" %}
+              {% assign lead = page.opportunity_lead %}
+              {% assign paragraphs = page.opportunity %}
+            {% when "what_we_did" %}
+              {% assign heading = page.what_we_did_heading | default: "What we did" %}
+              {% assign lead = page.what_we_did_lead %}
+              {% assign paragraphs = page.what_we_did %}
+            {% when "result" %}
+              {% assign heading = page.result_heading | default: "The result" %}
+              {% assign lead = page.result_lead %}
+              {% assign paragraphs = page.result %}
+          {% endcase %}
+
+          {% if paragraphs or lead %}
+          <article class="{% unless forloop.first %}pt-12 sm:pt-16 mt-12 sm:mt-16 border-t border-border{% endunless %}">
+            <p class="text-xs font-semibold uppercase tracking-widest text-yellow mb-3">{{ heading }}</p>
+            {% if lead %}
+            <p class="font-heading text-xl sm:text-2xl md:text-[1.75rem] font-semibold text-gray-900 leading-snug mb-5 sm:mb-6">
+              {{ lead }}
+            </p>
+            {% endif %}
+            {% if paragraphs %}
+            <div class="cs-prose text-muted text-base sm:text-[1.0625rem] leading-relaxed">
+              {% for para in paragraphs %}
+              <p>{{ para }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if key == "result" and page.stats and page.stats.size > 0 %}
+            {% assign stat_count = page.stats | size %}
+            {% if stat_count == 1 %}{% assign stats_class = "sm:grid-cols-1" %}
+            {% elsif stat_count == 2 %}{% assign stats_class = "sm:grid-cols-2" %}
+            {% else %}{% assign stats_class = "sm:grid-cols-3" %}{% endif %}
+            <dl class="grid {{ stats_class }} gap-6 sm:gap-8 mt-8 sm:mt-10">
+              {% for stat in page.stats %}
+              <div class="pl-5 border-l-4 border-yellow">
+                <dt class="font-heading text-3xl sm:text-4xl font-bold text-gray-900 leading-none mb-2">{{ stat.value }}</dt>
+                <dd class="text-sm text-muted leading-snug">{{ stat.label }}</dd>
+              </div>
+              {% endfor %}
+            </dl>
+            {% endif %}
+
+            {% if key == "result" and page.quote %}
+            <blockquote class="mt-8 sm:mt-10 pl-5 sm:pl-6 border-l-4 border-blue py-1">
+              <p class="text-base sm:text-lg text-gray-900 leading-relaxed">“{{ page.quote }}”</p>
+              {% if page.quote_attribution %}
+              <footer class="text-sm text-muted mt-3">— {{ page.quote_attribution }}</footer>
+              {% endif %}
+            </blockquote>
+            {% endif %}
+          </article>
+          {% endif %}
+
+          {% if image_count > 0 and gallery_position contains key %}
+          <div class="pt-12 sm:pt-16 mt-12 sm:mt-16 border-t border-border">
+            {% include case-study-gallery.html %}
+          </div>
+          {% endif %}
+        {% endfor %}
+
+        {% assign body = content | strip %}
+        {% if body != "" %}
+        <div class="cs-prose text-muted text-base sm:text-[1.0625rem] leading-relaxed pt-12 sm:pt-16 mt-12 sm:mt-16 border-t border-border">
+          {{ content }}
+        </div>
+        {% endif %}
+
+        {% if image_count > 0 and gallery_position contains "end" %}
+        <div class="pt-12 sm:pt-16 mt-12 sm:mt-16 border-t border-border">
+          {% include case-study-gallery.html %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if image_count > 0 %}{% include case-study-lightbox.html %}{% include case-study-scroller.html %}{% endif %}
+
+<!-- Closer -->
+<section id="contact" class="py-20 sm:py-28 md:py-32 bg-blue-dark text-white">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-end">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest text-yellow mb-4">Something similar in mind?</p>
+        <h2 class="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold leading-snug mb-5 sm:mb-6 max-w-md">
+          {{ page.closer_heading | default: "Let's find where AI can help you" }}
+        </h2>
+        <p class="text-base sm:text-lg text-white/70 leading-relaxed max-w-md">
+          {{ page.closer_body | default: "Tell us what you're struggling with. We'll chat about your business, offer advice where we can, and see if there's a fit. No pitch, no pressure." }}
+        </p>
+      </div>
+      <div class="md:text-right">
+        <a href="mailto:{{ site.email }}" class="inline-flex items-center justify-center gap-2 w-full md:w-auto px-8 py-4 bg-yellow text-blue-dark text-lg font-semibold rounded-lg hover:bg-white transition-all hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-blue-dark">
+          {{ site.email }}
+        </a>
+        <p class="text-sm text-white/50 mt-4 md:mr-1">Usually reply same day.</p>
+      </div>
+    </div>
+  </div>
+</section>
